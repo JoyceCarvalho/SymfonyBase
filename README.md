@@ -1,0 +1,1 @@
+# Projeto base para criação de novos projetos com o Symfony
