@@ -11,9 +11,14 @@ class DefaultController extends AbstractController
     #[Route('/', name: 'default')]
     public function index(): Response
     {
-        return $this->json([
-            'message' => 'Welcome to your new controller!',
-            'path' => 'src/Controller/DefaultController.php',
-        ]);
+        $name = 'Joyce Carvalho';
+        return $this->render('index.html.twig', compact('name'));
     }
+
+    #[Route('/product/{slug}', name: 'product_single')]
+    public function product($slug): Response
+    {
+        return $this->render('single.html.twig', compact('slug'));
+    }
+
 }
