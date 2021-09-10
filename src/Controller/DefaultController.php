@@ -2,6 +2,9 @@
 
 namespace App\Controller;
 
+use App\Entity\Product;
+use DateTime;
+use DateTimeZone;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -12,6 +15,20 @@ class DefaultController extends AbstractController
     public function index(): Response
     {
         $name = 'Joyce Carvalho';
+
+        $product = new Product();
+        $product->setName('Produto Teste 2');
+        $product->setDescription('Descrição 2');
+        $product->setBody('Info Produto 2');
+        $product->setPrice(3990);
+        $product->setSlug('product-test-2');
+        $product->setCreatedAt(new DateTime('now', new DateTimeZone('America/Sao_Paulo')));
+        $product->setUpdateAt(new DateTime('now', new DateTimeZone('America/Sao_Paulo')));
+
+        $manager = $this->getDoctrine()->getManager();
+        $manager->persist($product);
+        $manager->flush();
+
         return $this->render('index.html.twig', compact('name'));
     }
 
