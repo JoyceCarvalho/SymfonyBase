@@ -16,37 +16,6 @@ class DefaultController extends AbstractController
     {
         $name = 'Joyce Carvalho';
 
-        //Inserção
-        /*$product = new Product();   
-        $product->setName('Produto Teste');
-        $product->setDescription('Descrição');
-        $product->setBody('Info Produto');
-        $product->setPrice(3990);
-        $product->setSlug('product-test');
-        $product->setCreatedAt(new DateTime('now', new DateTimeZone('America/Sao_Paulo')));
-        $product->setUpdateAt(new DateTime('now', new DateTimeZone('America/Sao_Paulo')));
-
-        $manager = $this->getDoctrine()->getManager();
-        $manager->persist($product);
-        $manager->flush();*/
-
-        // Atualização
-        /*$product = $this->getDoctrine()->getRepository(Product::class)->find(2);
-
-        $product->setDescription('Descrição Main');
-        
-        $product->setUpdateAt(new DateTime('now', new DateTimeZone('America/Sao_Paulo')));
-
-        $manager = $this->getDoctrine()->getManager();
-        $manager->flush();*/
-
-        //Remoção
-        $product = $this->getDoctrine()->getRepository(Product::class)->find(4);
-
-        $manager = $this->getDoctrine()->getManager();
-        $manager->remove($product);
-        $manager->flush();
-
         return $this->render('index.html.twig', compact('name'));
     }
 
