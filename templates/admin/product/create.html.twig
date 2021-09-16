@@ -1,0 +1,43 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+    <div class="row">
+        <div class="col-12">
+            <div class="d-flex justify-content-between align-items-center">
+                <h1>Criar Produto</h1>
+            </div>
+        </div> 
+    </div>
+    <div class="col-12">
+        <form action="/admin/products/store" method="post">
+            <div class="form-group">
+                <label>Nome Produto</label>
+                <input type="text" class="form-control" name="name">
+            </div>
+            
+            <div class="form-group">
+                <label>Descrição</label>
+                <input type="text" class="form-control" name="description">
+            </div>
+
+            <div class="form-group">
+                <label>Conteudo/Informações</label>
+                <textarea name="body" class="form-control"></textarea>
+            </div>
+
+            <div class="form-group">
+                <label>Slug</label>
+                <input type="text" name="slug" class="form-control">
+            </div>
+
+            <div class="form-group">
+                <label>Preço</label>
+                <input type="text" name="price" class="form-control">
+            </div>
+
+            <div class="form-group">
+                <button class="btn btn-lg btn-success">Criar Produto</button>
+            </div>
+        </form>
+    </div>
+{% endblock %}
