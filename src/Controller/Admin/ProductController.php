@@ -45,10 +45,12 @@ class ProductController extends AbstractController
             $manager->persist($product);
             $manager->flush();
 
+            $this->addFlash('success', 'Produto criado com sucesso!');
+            
             return $this->redirectToRoute('admin_index_products');
 
-        } catch (\Exception $th) {
-            die($th->getMessage());
+        } catch (\Exception $e) {
+            die($e->getMessage());
         }
     }
 
@@ -56,28 +58,50 @@ class ProductController extends AbstractController
     public function edit($product) 
     {
         $product = $this->getDoctrine()->getRepository(Product::class)->find(2);
+
+        return $this->render('admin/product/edit.html.twig', compact('product'));
     }
 
     #[Route('/update/{product}', name: 'update_products', methods:"POST")]
-    public function update($product) 
+    public function update($product, Request $request) 
     {
-        $product = $this->getDoctrine()->getRepository(Product::class)->find(2);
+        try {
 
-        $product->setDescription('Descrição Main');
+            $data = $request->request->all();
+            $product = $this->getDoctrine()->getRepository(Product::class)->find(2);
+
+            $product->setName($data["name"]);
+            $product->setDescription($data["description"]);
+            $product->setBody($data["body"]);
+            $product->setPrice($data["price"]);
+            $product->setSlug($data["slug"]);
         
-        $product->setUpdateAt(new \DateTime('now', new \DateTimeZone('America/Sao_Paulo')));
+            $product->setUpdateAt(new \DateTime('now', new \DateTimeZone('America/Sao_Paulo')));
 
-        $manager = $this->getDoctrine()->getManager();
-        $manager->flush();
+            $manager = $this->getDoctrine()->getManager();
+            $manager->flush();
+
+            return $this->redirectToRoute('admin_edit_products', ['product' => $product->getId()]);
+
+        } catch (\Exception $e) {
+            die($e->getMessage());
+        }
     }
 
-    #[Route('/remove/{product}', name: 'remove_products', methods:"POST")]
+    #[Route('/remove/{product}', name: 'remove_products')]
     public function remove($product) 
     {
-        $product = $this->getDoctrine()->getRepository(Product::class)->find(4);
+        try {
+            $product = $this->getDoctrine()->getRepository(Product::class)->find($product);
 
-        $manager = $this->getDoctrine()->getManager();
-        $manager->remove($product);
-        $manager->flush();
+            $manager = $this->getDoctrine()->getManager();
+            $manager->remove($product);
+            $manager->flush();
+            
+            return $this->redirectToRoute('admin_index_products');
+
+        } catch (\Exception $e) {
+            die($e->getMessage());
+        }
     }
 }

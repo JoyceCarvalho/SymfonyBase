@@ -4,39 +4,39 @@
     <div class="row">
         <div class="col-12">
             <div class="d-flex justify-content-between align-items-center">
-                <h1>Criar Produto</h1>
+                <h1>Editar Produto</h1>
             </div>
         </div> 
     </div>
     <div class="col-12">
-        <form action="{{ path('admin_store_products') }}" method="post">
+        <form action="{{ path('admin_update_products', {product: product.id}) }}" method="post">
             <div class="form-group">
                 <label>Nome Produto</label>
-                <input type="text" class="form-control" name="name">
+                <input type="text" class="form-control" name="name" value=" {{ product.name }} ">
             </div>
             
             <div class="form-group">
                 <label>Descrição</label>
-                <input type="text" class="form-control" name="description">
+                <input type="text" class="form-control" name="description" value=" {{ product.description }} ">
             </div>
 
             <div class="form-group">
                 <label>Conteudo/Informações</label>
-                <textarea name="body" class="form-control"></textarea>
+                <textarea name="body" class="form-control">{{ product.body }}</textarea>
             </div>
 
             <div class="form-group">
                 <label>Slug</label>
-                <input type="text" name="slug" class="form-control">
+                <input type="text" name="slug" class="form-control" value=" {{ product.slug }} ">
             </div>
 
             <div class="form-group">
                 <label>Preço</label>
-                <input type="text" name="price" class="form-control">
+                <input type="text" name="price" class="form-control" value=" {{ product.price }} ">
             </div>
 
             <div class="form-group">
-                <button class="btn btn-lg btn-success">Criar Produto</button>
+                <button class="btn btn-lg btn-success">Atualizar Produto</button>
             </div>
         </form>
     </div>
