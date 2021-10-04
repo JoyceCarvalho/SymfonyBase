@@ -21,5 +21,7 @@ Esse projeto está utilizando a versão 5.3 do symfony.
 >> * Criação das entidades do banco
 >>> php bin/console make:entity entity_name
 >> * Criação das tabelas
->>> php bin/console make:migration (Cria uma migration)
+>>> php bin/console make:migration (Cria uma migration)<br>
 >>> php bin/console doctrine:migrations:migrate (cria a tabela no banco)
+>> * Executando query com doctrine pelo terminal
+>>> php bin/console doctrine:query:sql "SELECT * FROM <TABLE_NAME>"
